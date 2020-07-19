@@ -2,13 +2,13 @@ span {
     padding: 5px;
 }
 
-#control, .todoContainer {
+#control {
     background-color: cadetblue;
-    border: 3px solid rgb(73, 73, 102);
+    border-bottom: 3px solid rgb(73, 73, 102);
     width: 40%;
     height: auto;
-    border-radius: 10px;
-    margin: 3px;
+    padding: 1px 10px 10px 10px;
+    margin: 3px 3px 3px 0;
 }
 
 button {
@@ -17,11 +17,17 @@ button {
 
 ul {
     list-style-type: none;
+    background-color: rgb(212, 240, 241);
+    width: 38%;
 }
 
 .todoContainer {
     position: relative;
-    height: 20%;
+    height: 30px;
+    background-color: rgb(212, 240, 241);
+    border-bottom: 3px solid rgb(73, 73, 102);
+    width: 100%;
+    margin-top: 5px;
 }
 
 .todoContainer  button{
