@@ -3,6 +3,7 @@ let textInput = document.querySelector("#textInput");
 let toDoList = document.querySelector("#toDoList");
 let prioritySelector = document.querySelector("#prioritySelector");
 let toDoCounter = document.querySelector("#counter");
+let sortButton = document.querySelector("#sortButton");
 let counter = 0;
 
 addButton.addEventListener("click", function() {
@@ -37,4 +38,27 @@ addButton.addEventListener("click", function() {
     toDoCounter.innerText = counter;
     
     textInput.value = "";
+});
+
+sortButton.addEventListener("click", function() {
+    let i;
+    let switching;
+    let b;
+    let shouldSwitch;
+    switching = true;
+    while (switching) {
+        switching = false;
+        b = toDoList.getElementsByTagName("li");
+        for (i = 0; i < (b.length - 1); i++) {
+          shouldSwitch = false;
+          if (b[i].firstElementChild.innerHTML < b[i + 1].firstElementChild.innerHTML) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          b[i].parentNode.insertBefore(b[i + 1], b[i]);
+          switching = true;
+        }
+    }
 });
