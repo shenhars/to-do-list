@@ -4,7 +4,9 @@ let toDoList = document.querySelector("#toDoList");
 let prioritySelector = document.querySelector("#prioritySelector");
 let toDoCounter = document.querySelector("#counter");
 let sortButton = document.querySelector("#sortButton");
+let editButton = document.querySelector("#editButton");
 let counter = 0;
+let editMode = false;
 
 addButton.addEventListener("click", function() {
     if(textInput.value === "") return;
@@ -28,9 +30,11 @@ addButton.addEventListener("click", function() {
     let todoText = document.createElement("span");
     todoText.setAttribute("class", "todoText");
     todoText.innerHTML = textInput.value;
-
+    
     let deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "deleteButton");
     deleteButton.innerHTML = "Delete";
+    deleteButton.hidden = (editMode) ? false : true;
     
     container.appendChild(todoPriority);
     container.appendChild(todoCreatedAt);
@@ -73,3 +77,11 @@ toDoList.addEventListener("click", function(event) {
     li.parentNode.remove();
     textInput.focus();
 });
+
+editButton.addEventListener("click", function() {
+    delButtonsArr = toDoList.querySelectorAll(".deleteButton");
+    for (let i = 0; i < delButtonsArr.length; i++) {
+        delButtonsArr[i].hidden = !delButtonsArr[i].hidden;
+        editMode = !editMode;   
+    }
+})

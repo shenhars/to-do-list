@@ -5,8 +5,8 @@ span {
 #control, .todoContainer {
     background-color: cadetblue;
     border: 3px solid rgb(73, 73, 102);
-    width: 35%;
-    height: 20%;
+    width: 40%;
+    height: auto;
     border-radius: 10px;
     margin: 3px;
 }
@@ -17,4 +17,23 @@ button {
 
 ul {
     list-style-type: none;
+}
+
+.todoContainer {
+    position: relative;
+    height: 20%;
+}
+
+.todoContainer  button{
+    position: absolute;
+    right: 2px;
+}
+
+#control div{
+    position: relative;
+}
+
+#editButton {
+    position: absolute;
+    right: 3px;
 }
