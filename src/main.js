@@ -7,11 +7,11 @@ let sortButton = document.querySelector("#sortButton");
 let counter = 0;
 
 addButton.addEventListener("click", function() {
-    counter++;
+    if(textInput.value === "") return;
     
-    let li = document.createElement("li");
+    counter++;
 
-    let container = document.createElement("div");
+    let container = document.createElement("li");
     container.setAttribute("class", "todoContainer");
     
     let todoPriority = document.createElement("span");
@@ -28,16 +28,20 @@ addButton.addEventListener("click", function() {
     let todoText = document.createElement("span");
     todoText.setAttribute("class", "todoText");
     todoText.innerHTML = textInput.value;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
     
     container.appendChild(todoPriority);
     container.appendChild(todoCreatedAt);
     container.appendChild(todoText);
-    li.appendChild(container);
-    toDoList.appendChild(li);
+    container.appendChild(deleteButton);   
+    toDoList.appendChild(container);
 
     toDoCounter.innerText = counter;
     
     textInput.value = "";
+    textInput.focus();
 });
 
 sortButton.addEventListener("click", function() {
@@ -61,4 +65,11 @@ sortButton.addEventListener("click", function() {
           switching = true;
         }
     }
+});
+
+toDoList.addEventListener("click", function(event) {
+    let li = event.target;
+    if(li.innerHTML !== "Delete") return;
+    li.parentNode.remove();
+    textInput.focus();
 });
