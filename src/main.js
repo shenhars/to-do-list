@@ -8,6 +8,7 @@ const editButton = document.querySelector("#editButton");
 let counter = 0;
 let editMode = false;
 
+
 addButton.addEventListener("click", function() {
     if(textInput.value === "") return;
     
@@ -96,7 +97,8 @@ editButton.addEventListener("click", function() {
         delButtonsArr[i].hidden = !delButtonsArr[i].hidden;
         moveButtonsArr[i].hidden = !moveButtonsArr[i].hidden;
     }
-    editMode = !editMode;   
+    editMode = !editMode; 
+    addButton.title = (editMode) ? "exit edit mode" : "add task";
 })
 
 
@@ -117,46 +119,46 @@ function searchFunction() {
 }
 
 
-toDoList.addEventListener("click", function() {
-    
+editButton.addEventListener("click", function() {
     const list = document.getElementById("toDoList");
-
+    
     let draggingEle;
     let placeholder;
     let isDraggingStarted = false;
-
+    let arr = list.querySelectorAll('.draggable');
+    
     let x = 0;
     let y = 0;
-
+    
     const swap = function(nodeA, nodeB) {
         const parentA = nodeA.parentNode;
         const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
-
+        
         nodeB.parentNode.insertBefore(nodeA, nodeB);
-
+        
         parentA.insertBefore(nodeB, siblingA);
     };
-
+    
     const isAbove = function(nodeA, nodeB) {
         const rectA = nodeA.getBoundingClientRect();
         const rectB = nodeB.getBoundingClientRect();
-
+        
         return (rectA.top + rectA.height / 2 < rectB.top + rectB.height / 2);
     };
-
+    
     const mouseDownHandler = function(e) {
         draggingEle = e.target.closest("li");
         const rect = draggingEle.getBoundingClientRect();
         x = e.pageX - rect.left;
         y = e.pageY - rect.top;
-
+        
         document.addEventListener('mousemove', mouseMoveHandler);
         document.addEventListener('mouseup', mouseUpHandler);
     };
-
+    
     const mouseMoveHandler = function(e) {
         const draggingRect = draggingEle.getBoundingClientRect();
-
+        
         if (!isDraggingStarted) {
             isDraggingStarted = true;
             
@@ -165,11 +167,11 @@ toDoList.addEventListener("click", function() {
             draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
             placeholder.style.height = `${draggingRect.height}px`;
         }
-
+        
         draggingEle.style.position = 'absolute';
         draggingEle.style.top = `${e.pageY - y}px`; 
         draggingEle.style.left = `${e.pageX - x}px`;
-
+        
         const prevEle = draggingEle.previousElementSibling;
         const nextEle = placeholder.nextElementSibling;
         
@@ -178,30 +180,37 @@ toDoList.addEventListener("click", function() {
             swap(placeholder, prevEle);
             return;
         }
-
+        
         if (nextEle && isAbove(nextEle, draggingEle)) {
             swap(nextEle, placeholder);
             swap(nextEle, draggingEle);
         }
     };
-
+    
     const mouseUpHandler = function() {
         if (placeholder !== undefined) placeholder.remove();
-
+        
         draggingEle.style.removeProperty('top');
         draggingEle.style.removeProperty('left');
         draggingEle.style.removeProperty('position');
-
+        
         x = null;
         y = null;
         draggingEle = undefined;
         isDraggingStarted = false;
-
+        
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', mouseUpHandler);
     };
-    
-    [].slice.call(list.querySelectorAll('.draggable')).forEach(function(item) {
+    debugger;
+    if(!editMode){
+        for (const item in arr) {
+            arr[item].removeEventListener('mousedown', mouseDownHandler);
+        }
+        return;
+    }
+
+    arr.forEach(function(item) {
         item.addEventListener('mousedown', mouseDownHandler);
     });
 });
