@@ -3,11 +3,12 @@
 #control {
     position: relative;
     background-color: cadetblue;
-    border-bottom: 3px solid rgb(73, 73, 102);
+    border-bottom: 3px solid rgb(34, 34, 83);
     width: 50%;
     height: auto;
     padding: 1px 10px 10px 10px;
     margin: 3px 3px 0 0;
+    color: white;
 }
 
 #control div{
@@ -23,20 +24,23 @@ h1 {
     border-bottom: 2px solid rgb(107, 178, 180);
 }
 
-#searchInput {
-    position: absolute;
-    right: 10px; 
+input {
     bottom: 10px;
-    background-position: 10px 12px;
     width: 25%;
     font-size: 16px;
     padding: 2px 20px 2px 5px;
     border: 1px solid #ddd;
 }
 
+#searchInput {
+    position: absolute;
+    right: 10px;
+}
+
 #header {
     width: 50%;
     background-color: cadetblue;
+    color: white;
     position: sticky;
     z-index: 1;
     top: 0; 
@@ -108,8 +112,11 @@ ul {
     background-color: rgb(230, 97, 74);
 }
 
-
 .draggable {
+    width: 25px;
+    height: 25px;
+    border-style: none;
+    background-color: Transparent;
     cursor: move;
     user-select: none;
 }

@@ -18,6 +18,9 @@ addButton.addEventListener("click", function() {
 
     let movingButton = document.createElement("button");
     movingButton.setAttribute("class", "draggable");
+    let movingButtonIcon = document.createElement("i");
+    movingButtonIcon.setAttribute("class", "fa fa-bars");
+    movingButton.appendChild(movingButtonIcon);
     movingButton.hidden = (editMode) ? false : true;
     
     let todoPriority = document.createElement("span");
@@ -114,3 +117,91 @@ function searchFunction() {
 }
 
 
+toDoList.addEventListener("click", function() {
+    
+    const list = document.getElementById("toDoList");
+
+    let draggingEle;
+    let placeholder;
+    let isDraggingStarted = false;
+
+    let x = 0;
+    let y = 0;
+
+    const swap = function(nodeA, nodeB) {
+        const parentA = nodeA.parentNode;
+        const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+
+        nodeB.parentNode.insertBefore(nodeA, nodeB);
+
+        parentA.insertBefore(nodeB, siblingA);
+    };
+
+    const isAbove = function(nodeA, nodeB) {
+        const rectA = nodeA.getBoundingClientRect();
+        const rectB = nodeB.getBoundingClientRect();
+
+        return (rectA.top + rectA.height / 2 < rectB.top + rectB.height / 2);
+    };
+
+    const mouseDownHandler = function(e) {
+        draggingEle = e.target.closest("li");
+        const rect = draggingEle.getBoundingClientRect();
+        x = e.pageX - rect.left;
+        y = e.pageY - rect.top;
+
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+    };
+
+    const mouseMoveHandler = function(e) {
+        const draggingRect = draggingEle.getBoundingClientRect();
+
+        if (!isDraggingStarted) {
+            isDraggingStarted = true;
+            
+            placeholder = document.createElement('li');
+            placeholder.classList.add('placeholder');
+            draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
+            placeholder.style.height = `${draggingRect.height}px`;
+        }
+
+        draggingEle.style.position = 'absolute';
+        draggingEle.style.top = `${e.pageY - y}px`; 
+        draggingEle.style.left = `${e.pageX - x}px`;
+
+        const prevEle = draggingEle.previousElementSibling;
+        const nextEle = placeholder.nextElementSibling;
+        
+        if (prevEle && isAbove(draggingEle, prevEle)) {
+            swap(placeholder, draggingEle);
+            swap(placeholder, prevEle);
+            return;
+        }
+
+        if (nextEle && isAbove(nextEle, draggingEle)) {
+            swap(nextEle, placeholder);
+            swap(nextEle, draggingEle);
+        }
+    };
+
+    const mouseUpHandler = function() {
+        if (placeholder !== undefined) placeholder.remove();
+
+        draggingEle.style.removeProperty('top');
+        draggingEle.style.removeProperty('left');
+        draggingEle.style.removeProperty('position');
+
+        x = null;
+        y = null;
+        draggingEle = undefined;
+        isDraggingStarted = false;
+
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        document.removeEventListener('mouseup', mouseUpHandler);
+    };
+    
+    [].slice.call(list.querySelectorAll('.draggable')).forEach(function(item) {
+        item.addEventListener('mousedown', mouseDownHandler);
+    });
+});
