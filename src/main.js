@@ -7,6 +7,7 @@ const sortButton = document.querySelector("#sortButton");
 const editButton = document.querySelector("#editButton");
 let counter = 0;
 let editMode = false;
+let index = 0;
 
 
 addButton.addEventListener("click", function() {
@@ -22,6 +23,10 @@ addButton.addEventListener("click", function() {
     let movingButtonIcon = document.createElement("i");
     movingButtonIcon.setAttribute("class", "fa fa-bars");
     movingButton.appendChild(movingButtonIcon);
+    let hasDraggingElem = document.createElement("span");
+    hasDraggingElem.innerHTML = 0;
+    hasDraggingElem.hidden = true;
+    movingButton.appendChild(hasDraggingElem);
     movingButton.hidden = (editMode) ? false : true;
     
     let todoPriority = document.createElement("span");
@@ -125,7 +130,6 @@ editButton.addEventListener("click", function() {
     let draggingEle;
     let placeholder;
     let isDraggingStarted = false;
-    let arr = list.getElementsByClassName('draggable');
     
     let x = 0;
     let y = 0;
@@ -202,15 +206,16 @@ editButton.addEventListener("click", function() {
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', mouseUpHandler);
     };
+
+    let arr = list.getElementsByClassName('draggable');
     if(!editMode){
-        if (counter === 0) return;
-        for (let i = 0; i < arr.length; i++) {
-            debugger;
-            arr[i].removeEventListener('mousedown', mouseDownHandler);
-        }
         return;
     }
     for (let i = 0; i < arr.length; i++) {
-        arr[i].addEventListener('mousedown', mouseDownHandler);
+        if (arr[i].getElementsByTagName("span")[0].innerHTML === "0") {
+            arr[i].addEventListener('mousedown', mouseDownHandler);
+            arr[i].getElementsByTagName("span")[0].innerHTML = "1";
+        }
     }
+    index++;
 });
