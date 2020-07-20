@@ -9,6 +9,7 @@
     padding: 1px 10px 10px 10px;
     margin: 3px 3px 0 0;
     color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }
 
 #control div{
@@ -67,6 +68,7 @@ select {
     top: 0; 
     height: 40px;
     padding: 0 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }
 
 #header div {
@@ -92,6 +94,7 @@ select {
     width: 50%;
     padding: 0 10px;
     background-color: rgb(212, 240, 241);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }
 
 

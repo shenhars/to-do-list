@@ -121,11 +121,11 @@ function searchFunction() {
 
 editButton.addEventListener("click", function() {
     const list = document.getElementById("toDoList");
-    
+
     let draggingEle;
     let placeholder;
     let isDraggingStarted = false;
-    let arr = list.querySelectorAll('.draggable');
+    let arr = list.getElementsByClassName('draggable');
     
     let x = 0;
     let y = 0;
@@ -202,15 +202,15 @@ editButton.addEventListener("click", function() {
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', mouseUpHandler);
     };
-    debugger;
     if(!editMode){
-        for (const item in arr) {
-            arr[item].removeEventListener('mousedown', mouseDownHandler);
+        if (counter === 0) return;
+        for (let i = 0; i < arr.length; i++) {
+            debugger;
+            arr[i].removeEventListener('mousedown', mouseDownHandler);
         }
         return;
     }
-
-    arr.forEach(function(item) {
-        item.addEventListener('mousedown', mouseDownHandler);
-    });
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].addEventListener('mousedown', mouseDownHandler);
+    }
 });
