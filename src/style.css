@@ -1,38 +1,12 @@
-span {
-    padding: 5px;
-}
+
 
 #control {
     background-color: cadetblue;
     border-bottom: 3px solid rgb(73, 73, 102);
-    width: 40%;
+    width: 50%;
     height: auto;
     padding: 1px 10px 10px 10px;
     margin: 3px 3px 3px 0;
-}
-
-button {
-    padding: 5px 10px;
-}
-
-ul {
-    list-style-type: none;
-    background-color: rgb(212, 240, 241);
-    width: 38%;
-}
-
-.todoContainer {
-    position: relative;
-    height: 30px;
-    background-color: rgb(212, 240, 241);
-    border-bottom: 3px solid rgb(73, 73, 102);
-    width: 100%;
-    margin-top: 5px;
-}
-
-.todoContainer  button{
-    position: absolute;
-    right: 2px;
 }
 
 #control div{
@@ -43,3 +17,75 @@ ul {
     position: absolute;
     right: 3px;
 }
+
+h1 {
+    border-bottom: 2px solid rgb(107, 178, 180);
+}
+
+#header {
+    width: 50%;
+    background-color: cadetblue;
+    position: sticky;
+    z-index: 1;
+    top: 0; 
+    height: 40px;
+}
+
+#header div {
+    padding: 10px 0;
+}
+
+#priorityHeader, .todoPriority{
+    display: inline-block;
+    min-width: 90px;
+}
+
+#creationTimeHeader, .todoCreatedAt{
+    display: inline-block;
+    min-width: 150px;
+}
+
+#taskHeader, .todoText{
+    display: inline-block;
+    width: auto;
+}
+
+#view {
+    width: 50%;
+}
+
+
+ul {
+    list-style-type: none;
+    background-color: rgb(212, 240, 241);
+    padding: 0;
+}
+
+.todoContainer {
+    position: relative;
+    height: 30px;
+    background-color: rgb(212, 240, 241);
+    border-bottom: 1px solid rgb(73, 73, 102);
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.deleteButton{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    height: 60%;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 0.5px cadetblue;
+    color: white;
+    text-align: center;
+    background-color: rgb(204, 62, 37);
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: rgb(230, 97, 74);
+}
+
+
+

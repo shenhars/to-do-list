@@ -1,10 +1,10 @@
-let addButton = document.querySelector("#addButton");
-let textInput = document.querySelector("#textInput");
-let toDoList = document.querySelector("#toDoList");
-let prioritySelector = document.querySelector("#prioritySelector");
-let toDoCounter = document.querySelector("#counter");
-let sortButton = document.querySelector("#sortButton");
-let editButton = document.querySelector("#editButton");
+const addButton = document.querySelector("#addButton");
+const textInput = document.querySelector("#textInput");
+const toDoList = document.querySelector("#toDoList");
+const prioritySelector = document.querySelector("#prioritySelector");
+const toDoCounter = document.querySelector("#counter");
+const sortButton = document.querySelector("#sortButton");
+const editButton = document.querySelector("#editButton");
 let counter = 0;
 let editMode = false;
 
@@ -15,6 +15,10 @@ addButton.addEventListener("click", function() {
 
     let container = document.createElement("li");
     container.setAttribute("class", "todoContainer");
+
+    let movingButton = document.createElement("button");
+    movingButton.setAttribute("class", "draggable");
+    movingButton.hidden = (editMode) ? false : true;
     
     let todoPriority = document.createElement("span");
     todoPriority.setAttribute("class", "todoPriority");
@@ -36,10 +40,11 @@ addButton.addEventListener("click", function() {
     deleteButton.innerHTML = "Delete";
     deleteButton.hidden = (editMode) ? false : true;
     
+    container.appendChild(movingButton); 
     container.appendChild(todoPriority);
     container.appendChild(todoCreatedAt);
     container.appendChild(todoText);
-    container.appendChild(deleteButton);   
+    container.appendChild(deleteButton);
     toDoList.appendChild(container);
 
     toDoCounter.innerText = counter;
@@ -58,30 +63,38 @@ sortButton.addEventListener("click", function() {
         switching = false;
         b = toDoList.getElementsByTagName("li");
         for (i = 0; i < (b.length - 1); i++) {
-          shouldSwitch = false;
-          if (b[i].firstElementChild.innerHTML < b[i + 1].firstElementChild.innerHTML) {
-            shouldSwitch = true;
-            break;
-          }
+            shouldSwitch = false;
+            if (b[i].querySelector(".todoPriority").innerHTML < b[i + 1].querySelector(".todoPriority").innerHTML) {
+                shouldSwitch = true;
+                break;
+            }
         }
         if (shouldSwitch) {
-          b[i].parentNode.insertBefore(b[i + 1], b[i]);
-          switching = true;
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
         }
     }
 });
 
 toDoList.addEventListener("click", function(event) {
     let li = event.target;
-    if(li.innerHTML !== "Delete") return;
+    if(li.className !== "deleteButton") return;
     li.parentNode.remove();
+    counter--;
+    toDoCounter.innerText = counter;
     textInput.focus();
 });
 
 editButton.addEventListener("click", function() {
+    addButton.disabled = !editMode;
     delButtonsArr = toDoList.querySelectorAll(".deleteButton");
+    moveButtonsArr = toDoList.querySelectorAll(".draggable");
     for (let i = 0; i < delButtonsArr.length; i++) {
         delButtonsArr[i].hidden = !delButtonsArr[i].hidden;
-        editMode = !editMode;   
+        moveButtonsArr[i].hidden = !moveButtonsArr[i].hidden;
     }
+    editMode = !editMode;   
 })
+
+
+

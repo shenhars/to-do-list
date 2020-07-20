@@ -18,7 +18,7 @@
         </div>
         <br>
 
-        <input type="text" id="textInput">
+        <input type="text" id="textInput" placeholder="Insert task here">
         
         <select id="prioritySelector" name="priority-number">
             <option value="1">1</option>
@@ -31,12 +31,16 @@
         <button id="addButton">Add</button>
     </section>
     
+    <div id="header">
+        <div id="priorityHeader"><b>PRIORITY</b></div>
+        <div id="creationTimeHeader"><b>CREATED AT</b></div>
+        <div id="taskHeader"><b>TASK</b></div>
+    </div>
+        
     <section id="view">
         <ul id="toDoList">
         </ul>
     </section>
-
-    
 
     <script src="main.js"></script>
 </body>
