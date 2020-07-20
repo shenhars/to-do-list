@@ -97,4 +97,20 @@ editButton.addEventListener("click", function() {
 })
 
 
+function searchFunction() {
+    let input, filter, li, text, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    li = toDoList.getElementsByTagName("li");
+    for (let i = 0; i < li.length; i++) {
+        text = li[i].getElementsByClassName("todoText")[0];
+        txtValue = text.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
 

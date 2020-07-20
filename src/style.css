@@ -1,12 +1,13 @@
 
 
 #control {
+    position: relative;
     background-color: cadetblue;
     border-bottom: 3px solid rgb(73, 73, 102);
     width: 50%;
     height: auto;
     padding: 1px 10px 10px 10px;
-    margin: 3px 3px 3px 0;
+    margin: 3px 3px 0 0;
 }
 
 #control div{
@@ -22,6 +23,17 @@ h1 {
     border-bottom: 2px solid rgb(107, 178, 180);
 }
 
+#searchInput {
+    position: absolute;
+    right: 10px; 
+    bottom: 10px;
+    background-position: 10px 12px;
+    width: 25%;
+    font-size: 16px;
+    padding: 2px 20px 2px 5px;
+    border: 1px solid #ddd;
+}
+
 #header {
     width: 50%;
     background-color: cadetblue;
@@ -29,6 +41,7 @@ h1 {
     z-index: 1;
     top: 0; 
     height: 40px;
+    padding: 0 10px;
 }
 
 #header div {
@@ -52,12 +65,15 @@ h1 {
 
 #view {
     width: 50%;
+    padding: 0 10px;
+    background-color: rgb(212, 240, 241);
 }
 
 
 ul {
     list-style-type: none;
     background-color: rgb(212, 240, 241);
+    margin: 0;
     padding: 0;
 }
 
@@ -70,13 +86,18 @@ ul {
     padding-top: 10px;
 }
 
+.todoContainer:hover {
+    background-color: rgb(156, 209, 211);
+}
+
 .deleteButton{
     position: absolute;
     right: 5px;
     top: 10px;
     height: 60%;
+    border-style: none;
     border-radius: 3px;
-    box-shadow: 0 0 1px 0.5px cadetblue;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
     color: white;
     text-align: center;
     background-color: rgb(204, 62, 37);
@@ -88,4 +109,13 @@ ul {
 }
 
 
+.draggable {
+    cursor: move;
+    user-select: none;
+}
 
+.placeholder {
+    background-color: #edf2f7;
+    border: 2px dashed #cbd5e0;
+    margin-bottom: 1rem;
+}
