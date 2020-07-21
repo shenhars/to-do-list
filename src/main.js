@@ -9,15 +9,6 @@ let counter = 0;
 let editMode = false;
 let index = 0;
 
-document.addEventListener("DOMContentLoaded", function() {
-    if (localStorage.length === 0) return;
-    for (const container in localStorage) {
-        if (container === "length") return;
-        createContainer(JSON.parse(localStorage.getItem(container))["priority"], 
-        JSON.parse(localStorage.getItem(container))["creationTime"], 
-        JSON.parse(localStorage.getItem(container))["textValue"]);
-    }
-});
 
 addButton.addEventListener("click", function() {
     if(textInput.value === "") return;
@@ -30,7 +21,6 @@ addButton.addEventListener("click", function() {
     let text = textInput.value
     
     createContainer(prio, time, text);
-    addToLocalStorage(prio, time, text);
 
     textInput.value = "";
 });
@@ -80,15 +70,6 @@ function createContainer(priority, creationTime, textValue) {
     toDoCounter.innerText = counter;
     
     textInput.focus();
-}
-
-function addToLocalStorage(priority, creationTime, textValue) {
-    const obj = {
-        "priority": priority,
-        "creationTime": creationTime,
-        "textValue": textValue
-    }
-    localStorage.setItem(("container" + counter), JSON.stringify(obj));
 }
 
 sortButton.addEventListener("click", function() {
