@@ -8,42 +8,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    
-    <section id="control">
-        <div>
-            <h1>ToDo List</h1>
-            <b><span id="counter">0</span></b>
-            <span>TODOs</span>
-            <button id="sortButton">Sort</button>
-            <button id="editButton">Edit</button>
+    <div id="page">
+        <section id="control">
+            <div>
+                <h1>ToDo List</h1>
+                <b><span id="counter">0</span></b>
+                <span>TODOs</span>
+                <button id="sortButton">Sort</button>
+                <button id="editButton">Edit</button>
+            </div>
+            <br>
+            
+            <input type="text" id="textInput" placeholder="Insert task here">
+            
+            <select id="prioritySelector" name="priority-number">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            
+            <button id="addButton" title="add task">Add</button>
+            <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for task">
+        </section>
+        
+        <div id="header">
+            <div id="priorityHeader"><b>PRIORITY</b></div>
+            <div id="creationTimeHeader"><b>CREATED AT</b></div>
+            <div id="taskHeader"><b>TASK</b></div>
         </div>
-        <br>
-
-        <input type="text" id="textInput" placeholder="Insert task here">
         
-        <select id="prioritySelector" name="priority-number">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+        <section id="view">
+            <ul id="toDoList">
+            </ul>
+        </section>
         
-        <button id="addButton" title="add task">Add</button>
-        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for task">
-    </section>
-    
-    <div id="header">
-        <div id="priorityHeader"><b>PRIORITY</b></div>
-        <div id="creationTimeHeader"><b>CREATED AT</b></div>
-        <div id="taskHeader"><b>TASK</b></div>
+        <script src="main.js"></script>
     </div>
-        
-    <section id="view">
-        <ul id="toDoList">
-        </ul>
-    </section>
-
-    <script src="main.js"></script>
 </body>
 </html>

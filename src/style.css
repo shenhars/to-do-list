@@ -1,12 +1,16 @@
-
+#page {
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+}
 
 #control {
     position: relative;
     background-color: cadetblue;
     border-bottom: 2px solid rgb(34, 34, 83);
-    width: 50%;
+    width: 100%;
     height: auto;
-    padding: 1px 10px 10px 10px;
+    padding: 10px;
     margin: 3px 3px 0 0;
     color: white;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
@@ -24,7 +28,6 @@
     border-radius: 0;
     margin: 0 5px;
     cursor: pointer;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }
 
 #editButton {
@@ -60,7 +63,7 @@ select {
 }
 
 #header {
-    width: 50%;
+    width: 100%;
     background-color: cadetblue;
     color: white;
     position: sticky;
@@ -91,10 +94,9 @@ select {
 }
 
 #view {
-    width: 50%;
+    width: 100%;
     padding: 0 10px;
     background-color: rgb(212, 240, 241);
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }
 
 
