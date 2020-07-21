@@ -115,3 +115,18 @@ $ npm run test
  - Add link to the PR you created in your private repo [here](https://docs.google.com/spreadsheets/d/1P9_YDGqIqmV10fvTmIXc_AGV0_ycI2aBFo2h5zprUMI/edit#gid=1903529310), fill the other details
 
  GOOD LUCK!
+
+
+
+
+
+## submition:
+ממשימות הבונוס עשיתי את הגרירה והורדה של אלמנטים ברשימה,
+את האופציה לחיפוש משימה מסוימת,
+העלתי את הפרויקט לאתר vercel:
+https://to-do-list-72v4m6nwg.vercel.app/
+והוספתי עיצוב יפה משלי.
+קישור לסירטון על עצמי והפרויקט: https://drive.google.com/file/d/1uUsZCT8SvhxOjckPQF3M6SSOSQTi6Jm1/view?usp=sharing
+![Add todo task](./readme-files/ui-testing-recording.gif)
+
+![Add todo task](./readme-files/wn4jUUaJqh.gif)
