@@ -126,7 +126,7 @@ $ npm run test
 העלתי את הפרויקט לאתר vercel:
 https://to-do-list-72v4m6nwg.vercel.app/
 והוספתי עיצוב יפה משלי.
-קישור לסירטון על עצמי והפרויקט: https://drive.google.com/file/d/1uUsZCT8SvhxOjckPQF3M6SSOSQTi6Jm1/view?usp=sharing
+קישור לסירטון על עצמי והפרויקט: https://drive.google.com/file/d/1G3Su9h_PKgpV1r5y13uQ6P933YzAuxUa/view?usp=sharing
 ![Add todo task](./readme-files/ui-testing-recording.gif)
 
 ![Add todo task](./readme-files/wn4jUUaJqh.gif)
