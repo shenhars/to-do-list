@@ -9,9 +9,33 @@ let counter = 0;
 let editMode = false;
 let index = 0;
 
+document.addEventListener("DOMContentLoaded", function() {
+    if (localStorage.length === 0) return;
+    for (const container in localStorage) {
+        if (container === "length") return;
+        createContainer(JSON.parse(localStorage.getItem(container))["priority"], 
+        JSON.parse(localStorage.getItem(container))["creationTime"], 
+        JSON.parse(localStorage.getItem(container))["textValue"]);
+    }
+});
 
 addButton.addEventListener("click", function() {
     if(textInput.value === "") return;
+    
+    let prio = prioritySelector.value;
+    let date = new Date();
+    let time = date.getFullYear() + "-" + (((date.getMonth()+1) < 10)?"0":"") + (date.getMonth()+1) + "-" + 
+    ((date.getDate() < 10)?"0":"") + date.getDate() + " " + ((date.getHours() < 10)?"0":"") + date.getHours() + ":" + 
+    ((date.getMinutes() < 10)?"0":"") + date.getMinutes() + ":" + ((date.getSeconds() < 10)?"0":"") + date.getSeconds();
+    let text = textInput.value
+    
+    createContainer(prio, time, text);
+    addToLocalStorage(prio, time, text);
+
+    textInput.value = "";
+});
+
+function createContainer(priority, creationTime, textValue) {
     
     counter++;
 
@@ -31,18 +55,15 @@ addButton.addEventListener("click", function() {
     
     let todoPriority = document.createElement("span");
     todoPriority.setAttribute("class", "todoPriority");
-    todoPriority.innerHTML = prioritySelector.value;
+    todoPriority.innerHTML = priority;
     
     let todoCreatedAt = document.createElement("span");
-    let date = new Date();
     todoCreatedAt.setAttribute("class", "todoCreatedAt");
-    todoCreatedAt.innerHTML = date.getFullYear() + "-" + (((date.getMonth()+1) < 10)?"0":"") + (date.getMonth()+1) + "-" + 
-    ((date.getDate() < 10)?"0":"") + date.getDate() + " " + ((date.getHours() < 10)?"0":"") + date.getHours() + ":" + 
-    ((date.getMinutes() < 10)?"0":"") + date.getMinutes() + ":" + ((date.getSeconds() < 10)?"0":"") + date.getSeconds(); 
+    todoCreatedAt.innerHTML = creationTime;
     
     let todoText = document.createElement("span");
     todoText.setAttribute("class", "todoText");
-    todoText.innerHTML = textInput.value;
+    todoText.innerHTML = textValue;
     
     let deleteButton = document.createElement("button");
     deleteButton.setAttribute("class", "deleteButton");
@@ -58,9 +79,17 @@ addButton.addEventListener("click", function() {
 
     toDoCounter.innerText = counter;
     
-    textInput.value = "";
     textInput.focus();
-});
+}
+
+function addToLocalStorage(priority, creationTime, textValue) {
+    const obj = {
+        "priority": priority,
+        "creationTime": creationTime,
+        "textValue": textValue
+    }
+    localStorage.setItem(("container" + counter), JSON.stringify(obj));
+}
 
 sortButton.addEventListener("click", function() {
     let i;
@@ -156,8 +185,8 @@ editButton.addEventListener("click", function() {
         x = e.pageX - rect.left;
         y = e.pageY - rect.top;
         
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
+        document.addEventListener("mousemove", mouseMoveHandler);
+        document.addEventListener("mouseup", mouseUpHandler);
     };
     
     const mouseMoveHandler = function(e) {
@@ -166,13 +195,13 @@ editButton.addEventListener("click", function() {
         if (!isDraggingStarted) {
             isDraggingStarted = true;
             
-            placeholder = document.createElement('li');
-            placeholder.classList.add('placeholder');
+            placeholder = document.createElement("li");
+            placeholder.classList.add("placeholder");
             draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
             placeholder.style.height = `${draggingRect.height}px`;
         }
         
-        draggingEle.style.position = 'absolute';
+        draggingEle.style.position = "absolute";
         draggingEle.style.top = `${e.pageY - y}px`; 
         draggingEle.style.left = `${e.pageX - x}px`;
         
@@ -194,26 +223,26 @@ editButton.addEventListener("click", function() {
     const mouseUpHandler = function() {
         if (placeholder !== undefined) placeholder.remove();
         
-        draggingEle.style.removeProperty('top');
-        draggingEle.style.removeProperty('left');
-        draggingEle.style.removeProperty('position');
+        draggingEle.style.removeProperty("top");
+        draggingEle.style.removeProperty("left");
+        draggingEle.style.removeProperty("position");
         
         x = null;
         y = null;
         draggingEle = undefined;
         isDraggingStarted = false;
         
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        document.removeEventListener("mouseup", mouseUpHandler);
     };
 
-    let arr = list.getElementsByClassName('draggable');
+    let arr = list.getElementsByClassName("draggable");
     if(!editMode){
         return;
     }
     for (let i = 0; i < arr.length; i++) {
         if (arr[i].getElementsByTagName("span")[0].innerHTML === "0") {
-            arr[i].addEventListener('mousedown', mouseDownHandler);
+            arr[i].addEventListener("mousedown", mouseDownHandler);
             arr[i].getElementsByTagName("span")[0].innerHTML = "1";
         }
     }

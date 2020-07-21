@@ -29,6 +29,9 @@
     margin: 0 5px;
     cursor: pointer;
 }
+#control button:hover {
+    background-color: rgb(194, 241, 235);
+}
 
 #editButton {
     position: absolute;
