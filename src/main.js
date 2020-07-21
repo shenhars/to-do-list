@@ -7,9 +7,8 @@ const sortButton = document.querySelector("#sortButton");
 const editButton = document.querySelector("#editButton");
 let counter = 0;
 let editMode = false;
-let index = 0;
 
-
+//creating new container when addButton is pushed
 addButton.addEventListener("click", function() {
     if(textInput.value === "") return;
     
@@ -25,6 +24,7 @@ addButton.addEventListener("click", function() {
     textInput.value = "";
 });
 
+//creating new container
 function createContainer(priority, creationTime, textValue) {
     
     counter++;
@@ -72,6 +72,7 @@ function createContainer(priority, creationTime, textValue) {
     textInput.focus();
 }
 
+//sorting function by priority
 sortButton.addEventListener("click", function() {
     let i;
     let switching;
@@ -95,6 +96,7 @@ sortButton.addEventListener("click", function() {
     }
 });
 
+//deleting container from the list function
 toDoList.addEventListener("click", function(event) {
     let li = event.target;
     if(li.className !== "deleteButton") return;
@@ -104,6 +106,7 @@ toDoList.addEventListener("click", function(event) {
     textInput.focus();
 });
 
+//enter and exit edit mode when editButton is pushed
 editButton.addEventListener("click", function() {
     addButton.disabled = !editMode;
     delButtonsArr = toDoList.querySelectorAll(".deleteButton");
@@ -116,7 +119,7 @@ editButton.addEventListener("click", function() {
     addButton.title = (editMode) ? "exit edit mode" : "add task";
 })
 
-
+//on running searching function by input
 function searchFunction() {
     let input, filter, li, text, txtValue;
     input = document.getElementById("searchInput");
@@ -133,7 +136,7 @@ function searchFunction() {
     }
 }
 
-
+//drag and drop container in the list function
 editButton.addEventListener("click", function() {
     const list = document.getElementById("toDoList");
 
@@ -227,5 +230,4 @@ editButton.addEventListener("click", function() {
             arr[i].getElementsByTagName("span")[0].innerHTML = "1";
         }
     }
-    index++;
 });
