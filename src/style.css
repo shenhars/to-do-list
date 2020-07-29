@@ -1,0 +1,156 @@
+#page {
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+}
+
+#control {
+    position: relative;
+    background-color: cadetblue;
+    border-bottom: 2px solid rgb(34, 34, 83);
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin: 3px 3px 0 0;
+    color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+}
+
+#control div{
+    position: relative;
+}
+
+#control button {
+    width: 10%;
+    padding: 4px 5px;
+    background-color: white;
+    border-style: none;
+    border-radius: 0;
+    margin: 0 5px;
+    cursor: pointer;
+}
+#control button:hover {
+    background-color: rgb(194, 241, 235);
+}
+
+#editButton {
+    position: absolute;
+    right: 3px;
+}
+
+h1 {
+    border-bottom: 2px solid rgb(107, 178, 180);
+}
+
+input {
+    bottom: 10px;
+    width: 25%;
+    font-size: 16px;
+    padding: 2px 20px 2px 5px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-style: none;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
+}
+
+select {
+    height: 25px;
+}
+
+#searchInput {
+    position: absolute;
+    right: 10px;
+    border-style: none;
+    margin: 0 5px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
+}
+
+#header {
+    width: 100%;
+    background-color: cadetblue;
+    color: white;
+    position: sticky;
+    z-index: 1;
+    top: 0; 
+    height: 40px;
+    padding: 0 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+}
+
+#header div {
+    padding: 10px 0;
+}
+
+#priorityHeader, .todoPriority{
+    display: inline-block;
+    min-width: 90px;
+}
+
+#creationTimeHeader, .todoCreatedAt{
+    display: inline-block;
+    min-width: 150px;
+}
+
+#taskHeader, .todoText{
+    display: inline-block;
+    width: auto;
+}
+
+#view {
+    width: 100%;
+    padding: 0 10px;
+    background-color: rgb(212, 240, 241);
+}
+
+
+ul {
+    list-style-type: none;
+    background-color: rgb(212, 240, 241);
+    margin: 0;
+    padding: 0;
+}
+
+.todoContainer {
+    position: relative;
+    height: 30px;
+    background-color: rgb(212, 240, 241);
+    border-bottom: 1px solid rgb(73, 73, 102);
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.todoContainer:hover {
+    background-color: rgb(156, 209, 211);
+}
+
+.deleteButton{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    height: 60%;
+    border-style: none;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    color: white;
+    background-color: rgb(204, 62, 37);
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: rgb(230, 97, 74);
+}
+
+.draggable {
+    width: 25px;
+    height: 25px;
+    border-style: none;
+    background-color: Transparent;
+    cursor: move;
+    user-select: none;
+}
+
+.placeholder {
+    background-color: #edf2f7;
+    border: 2px dashed #cbd5e0;
+    margin-bottom: 1rem;
+}
